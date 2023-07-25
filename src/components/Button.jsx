@@ -1,13 +1,16 @@
 "use client";
-import { Store } from "@/utilis/Store";
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
+import { Store } from "@/utilis/Store";
 import { client } from "../../sanity/lib/client";
 import { productQueryById } from "../../sanity/lib/queries";
-import { urlForImage } from "../../sanity/lib/image";
+
 
 function Button({ id }) {
   const { state, dispatch } = useContext(Store);
   const { cart } = state;
+  
+  const router = useRouter();
 
   const addToCartHandler = async () => {
     const existingItem = cart.cartItems.find((x) => x._id === id);
@@ -34,6 +37,8 @@ function Button({ id }) {
     });
 
     alert("Congratulations order placed");
+    router.push("/cart");
+    
   };
   return (
     <>

@@ -8,8 +8,9 @@ const initialState = {
     cartItems: Cookies.get("cartItems")
       ? JSON.parse(Cookies.get("cartItems"))
       : [],
-    // cartItems:[]
   },
+
+  userInfo: Cookies.get("useInfo") ? JSON.parse(Cookies.get("useInfo")) : null,
 };
 
 function reducer(state, action) {
@@ -30,7 +31,16 @@ function reducer(state, action) {
         : [...state.cart.cartItems, newItem];
       Cookies.set("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
-      
+
+    case "CART_REMOVE_ITEM":
+      const Items = state.cart.cartItems.filter(
+        (item) => item._id !== action.payload._id
+      );
+      Cookies.set("cartItems", JSON.stringify(Items));
+      return { ...state, cart: { ...state.cart, Items } };
+    case "USER_LOGIN":
+      return { ...state, userInfo: action.payload };
+
     // case "CART_UPDATE_ITEM":
     //   const item = action.payload;
     //   const existingItem = state.cartItems.find((x) => x._id === item._id);
