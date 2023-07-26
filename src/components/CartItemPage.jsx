@@ -3,13 +3,17 @@
 import { Store } from "@/utilis/Store";
 import Link from "next/link";
 import { useContext } from "react";
+import { useRouter } from "next/navigation";
 import CartItem from "./CartItem";
 
 function CartItemPage() {
+  const router = useRouter()
   const { state } = useContext(Store);
   const { cartItems } = state.cart;
   
-  const checkoutHandler = () => {};
+  const checkoutHandler = () => {
+    router.push("/shipping")
+  };
   return (
     <div className="bg-white pt-20">
       <h1 className=" px-6 text-gray-700 text-3xl font-bold">Cart Items</h1>
