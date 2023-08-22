@@ -40,13 +40,15 @@ function reducer(state, action) {
       Cookies.set("cartItems", JSON.stringify(cartItems));
       return { ...state, cart: { ...state.cart, cartItems } };
 
-    case "CART_REMOVE_ITEM": 
+    case "CART_REMOVE_ITEM":
       const Items = state.cart.cartItems.filter(
         (item) => item._id !== action.payload._id
       );
       Cookies.set("cartItems", JSON.stringify(Items));
       return { ...state, cart: { ...state.cart, Items } };
-    
+
+    case "CART_CLEAR":
+      return { ...state, cart: { ...state.cart, cartItems: [] } };
 
     case "USER_LOGIN":
       return { ...state, userInfo: action.payload };

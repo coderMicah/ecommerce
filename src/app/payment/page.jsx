@@ -22,9 +22,14 @@ function Payment() {
   }, []);
 
   const onSubmit = ({ paymentMethod }) => {
-    Cookies.set("paymentMethod", paymentMethod);
-    dispatch({ type: "SAVE_PAYMENT_METHOD", payload: paymentMethod });
-    router.push("/placeorder");
+    if (!paymentMethod) {
+      alert("Payment is required");
+      return;
+    } else {
+      Cookies.set("paymentMethod", paymentMethod);
+      dispatch({ type: "SAVE_PAYMENT_METHOD", payload: paymentMethod });
+      router.push("/placeorder");
+    }
   };
 
   return (

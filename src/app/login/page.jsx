@@ -19,7 +19,7 @@ function Login() {
     if (userInfo) {
       router.push(redirect || "/");
     }
-  });
+  },[router,redirect]);
 
   const onSubmit = async ({ email, password }) => {
     try {

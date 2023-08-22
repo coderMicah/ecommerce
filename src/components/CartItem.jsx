@@ -64,7 +64,6 @@ function CartItem({ item }) {
             value={item.quantity}
             onChange={(e) => updateCartHandler(item, e.target.value)}
           >
-            Hello
             {[...Array(item.countInStock).keys()].map((x) => (
               <option key={x + 1} value={x + 1}>
                 {x + 1}

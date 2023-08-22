@@ -23,7 +23,7 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function Header() {
+export default function  Header() {
   const { state, dispatch } = useContext(Store);
   const router = useRouter();
 

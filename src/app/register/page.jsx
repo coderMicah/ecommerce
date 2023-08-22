@@ -21,7 +21,7 @@ function Register() {
     if (userInfo) {
       router.push(redirect || "/");
     } 
-  }, []);
+  }, [router,redirect ,userInfo]);
 
   const onSubmit = async ({ name, email, password }) => {
     try {
